@@ -2,7 +2,7 @@
 export default function Home() {
   return (
     <main className="text-green-500">
-      Home Page
+      Home (Site)!
     </main>
   )
 }
