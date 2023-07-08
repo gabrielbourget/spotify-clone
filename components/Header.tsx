@@ -1,11 +1,14 @@
 "use client";
 
+// -> Beyond codebase
 import { useRouter } from "next/navigation";
 import { ReactNode } from 'react';
 import { BiSearch } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
+// -> Within codebase
+import Button from "./Button";
 
 type HeaderProps = {
   children: ReactNode;
@@ -50,7 +53,27 @@ const Header = (props: HeaderProps) => {
             <BiSearch size={20} className="text-black" />
           </button>
         </div>
+        <div className="flex justify-between items-center gap-x-4">
+          <>
+            <div>
+              <Button
+                onClick={() => {}}
+                className="bg-transparent text-neutral font-medium">
+                Sign Up
+              </Button>
+            </div>
+            <div>
+              <Button
+                className="bg-white px-6 py-2"
+                onClick={() => {}}
+              >
+                Log In
+              </Button>
+            </div>
+          </>
+        </div>
       </div>
+      {children}
     </div>
   )
 }
