@@ -1,8 +1,8 @@
 
 export default function Home() {
   return (
-    <main className="text-green-500">
+    <div className="text-green-500">
       Home (Site)!
-    </main>
+    </div>
   )
 }
