@@ -1,7 +1,7 @@
 // -> Beyond codebase
 import { User } from "@supabase/auth-helpers-nextjs";
 import { useSessionContext, useUser as useSupaUser } from "@supabase/auth-helpers-react";
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 // -> Within codebase
 import { Subscription, UserDetails } from "@/types";
 
@@ -70,4 +70,14 @@ export const MyUserContextProvider = (props: Props) => {
   return (
     <UserContext.Provider value={value} {...props}/>
   );
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+
+  if (!context) {
+    throw new Error("useUSer must be used within a MyUserContextProvider");
+  }
+
+  return context;
 };
