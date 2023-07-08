@@ -1,9 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { ReactNode } from 'react'
-import { twMerge } from "tailwind-merge";
+import { ReactNode } from 'react';
+import { BiSearch } from "react-icons/bi";
+import { HiHome } from "react-icons/hi";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
+import { twMerge } from "tailwind-merge";
 
 type HeaderProps = {
   children: ReactNode;
@@ -34,6 +36,18 @@ const Header = (props: HeaderProps) => {
             onClick={() => router.forward()}
           >
             <RxCaretRight size={35} className="text-white" />
+          </button>
+        </div>
+        <div className="flex md:hidden gap-x-2 items-center">
+          <button
+            className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+          >
+            <HiHome size={20} className="text-black" />
+          </button>
+          <button
+            className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+          >
+            <BiSearch size={20} className="text-black" />
           </button>
         </div>
       </div>
