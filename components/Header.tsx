@@ -1,6 +1,7 @@
 "use client";
 
 // -> Beyond codebase
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { ReactNode } from 'react';
 import { BiSearch } from "react-icons/bi";
@@ -8,8 +9,9 @@ import { HiHome } from "react-icons/hi";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
 // -> Within codebase
-import Button from "./Button";
 import useAuthModal from "@/hooks/useAuthModal";
+import { useUser } from "@/hooks/useUser";
+import Button from "./Button";
 
 type HeaderProps = {
   children: ReactNode;
@@ -21,9 +23,14 @@ const Header = (props: HeaderProps) => {
 
   const router = useRouter();
   const { onOpen } = useAuthModal();
+  const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    router.refresh();
 
+    if (error) console.log(`Error encountered while logging out -> ${error}`);
   };
 
 
