@@ -62,7 +62,7 @@ const UploadModal = () => {
       }
 
       const { data: imageData, error: imageError } = await supabaseClient
-        .storage.from("image").upload(`image-${values.title}-${imageStorageBucketID}`, imageFile, {
+        .storage.from("images").upload(`image-${values.title}-${imageStorageBucketID}`, imageFile, {
           cacheControl: "3600",
           upsert: false,
         });
@@ -88,8 +88,9 @@ const UploadModal = () => {
       router.refresh();
       setIsLoading(false);
       toast.success("Your song was uploaded");
+      onClose();
     } catch (err) {
-      toast.error(`Something went wrong when uploading your song.`);
+      toast.error(`Something went wrong when uploading your song -> ${err}`);
     } finally {
       setIsLoading(false);
     }
