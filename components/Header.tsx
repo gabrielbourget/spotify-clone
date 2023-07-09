@@ -4,6 +4,7 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { ReactNode } from 'react';
+import { toast } from "react-hot-toast";
 import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
@@ -31,7 +32,8 @@ const Header = (props: HeaderProps) => {
     const { error } = await supabaseClient.auth.signOut();
     router.refresh();
 
-    if (error) console.log(`Error encountered while logging out -> ${error}`);
+    if (error) toast.error(error.message)
+    else toast.success("You have logged out")
   };
 
 
