@@ -3,6 +3,8 @@ import SearchContent from "@/app/search/components/SearchContent";
 import Header from "@/components/Header";
 import SearchInput from "@/components/SearchInput";
 
+export const revalidate = 0;
+
 type SearchProps = {
   searchParams: {
     title: string;
