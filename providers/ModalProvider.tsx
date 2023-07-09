@@ -14,8 +14,8 @@ const ModalProvider = () => {
   }, [setIsMounted]);
 
   if (!isMounted) return null;
-
   return (
+
     <>
       <AuthModal />
       <UploadModal />
