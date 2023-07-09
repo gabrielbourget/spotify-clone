@@ -3,7 +3,7 @@
 // -> Beyond codebase
 import { useEffect, useState } from "react";
 // -> Within codebase
-import Modal from "@/components/Modal";
+import AuthModal from "@/components/AuthModal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -16,14 +16,7 @@ const ModalProvider = () => {
 
   return (
     <>
-      <Modal
-        title="Test Title"
-        description="Test Description"
-        isOpen
-        onChange={() => {}}
-      >
-        Test children content
-      </Modal>
+      <AuthModal />
     </>
   );
 }

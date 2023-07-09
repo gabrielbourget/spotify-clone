@@ -1,6 +1,4 @@
-// -> Beyond codebase
 import { create } from "zustand";
-// -> Within codebase
 
 type AuthModalStore = {
   isOpen: boolean;
