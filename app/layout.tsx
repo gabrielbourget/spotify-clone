@@ -5,6 +5,7 @@ import { Figtree } from 'next/font/google'
 // -> Within codebase
 import ModalProvider from '@/providers/ModalProvider'
 import SupabaseProvider from '@/providers/SupabaseProvider'
+import ToasterProvider from '@/providers/ToasterProvider'
 import UserProvider from '@/providers/UserProvider'
 import './globals.css'
 
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={figtree.className}>
+        <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider />
