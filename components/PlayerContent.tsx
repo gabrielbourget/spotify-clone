@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiMiniSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
+import useSound from "use-sound";
 
 import usePlayer from "@/hooks/usePlayer";
 import { Song } from "@/types";
@@ -46,8 +47,34 @@ const PlayerContent = (props: PlayerContentProps) => {
     if (!prevSong) return player.setId(player.ids[player.ids.length -1]);
 
     player.setId(prevSong);
-  }; 
+  };
+
+  const [play, { pause, sound }] = useSound(songUrl, {
+    volume,
+    onplay: () => setIsPlaying(true),
+    onend: () => {
+      setIsPlaying(false);
+      onPlayNext();
+    },
+    onpause: () => setIsPlaying(false),
+    format: ['mp3', 'aiff', 'wav']
+  });
+
+  useEffect(() => {
+    // sound?.play();
+    
+    return () => sound?.unload()
+  }, [sound]);
+
+  const handlePlay = () => {
+    if (!isPlaying) play();
+    else pause();
+  }
   
+  const toggleMute = () => {
+    if (volume === 0) setVolume(1);
+    else setVolume(0);
+  }
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
@@ -60,7 +87,7 @@ const PlayerContent = (props: PlayerContentProps) => {
       {/* Mobile size controls */}
       <div className="flex md:hidden col-auto w-full justify-end items-center">
         <div
-          onClick={() => {}}
+          onClick={handlePlay}
           className="h-10 w-10 flex items-center jsutify-center rounded-full bg-white p-1 cursor-pointer"
         >
           <Icon className="text-black" size={30} />
@@ -76,7 +103,7 @@ const PlayerContent = (props: PlayerContentProps) => {
         />
         <div
           className="flex items-center justify-center h-10 w-10 rounded-full bg-white p-1 cursor-pointer"
-          onClick={() => {}}
+          onClick={handlePlay}
         >
           <Icon className="text-black" size={30} />
         </div>
@@ -94,7 +121,7 @@ const PlayerContent = (props: PlayerContentProps) => {
             className="cursor-pointer"
             size={34}
           />
-          <Slider />
+          <Slider value={volume} onChange={(value) => setVolume(value)} />
         </div>
       </div>
     </div>
