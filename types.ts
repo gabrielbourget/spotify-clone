@@ -52,3 +52,12 @@ export type Product = {
   image?: string;
   metadata?: Stripe.Metadata;
 }
+
+export type Song = {
+  id: string;
+  user_id: string;
+  author: string;
+  title: string;
+  song_path: string;
+  image_path: string;
+}
