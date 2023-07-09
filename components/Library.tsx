@@ -1,12 +1,18 @@
 "use client";
 
-import { TbPlaylist } from "react-icons/tb";
+// -> Beyond codebase
+import useAuthModal from "@/hooks/useAuthModal";
 import { AiOutlinePlus } from "react-icons/ai";
+import { TbPlaylist } from "react-icons/tb";
+// -> Within codebase
+import { useUser } from "@/hooks/useUser";
 
 const Library = () => {
+  const authModal = useAuthModal();
+  const { user } = useUser();
   
   const onClick = () =>{
-
+    if (!user) return authModal.onOpen();
   }
 
   return (
@@ -29,4 +35,4 @@ const Library = () => {
   )
 }
 
-export default Library
+export default Library;
