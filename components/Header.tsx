@@ -5,6 +5,7 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { ReactNode } from 'react';
 import { BiSearch } from "react-icons/bi";
+import { FaUserAlt } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
@@ -65,23 +66,42 @@ const Header = (props: HeaderProps) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <>
-            <div>
-              <Button
-                onClick={() => {}}
-                className="bg-transparent text-neutral font-medium">
-                Sign Up
-              </Button>
-            </div>
-            <div>
-              <Button
-                className="bg-white px-6 py-2"
-                onClick={onOpen}
-              >
-                Log In
-              </Button>
-            </div>
-          </>
+          {
+            (user) ? (
+              <div className="flex gap-x-4 items-center">
+                <Button
+                  onClick={handleLogout}
+                  className="bg-white px-6 py-2"
+                >
+                  Log Out
+                </Button>
+                <Button
+                  onClick={() => router.push("/account")}
+                  className="bg-white w-auto"
+                >
+                  <FaUserAlt />
+                </Button>
+              </div>
+            ) : (
+            <>
+              <div>
+                <Button
+                  onClick={() => {}}
+                  className="bg-transparent text-neutral font-medium">
+                  Sign Up
+                </Button>
+              </div>
+              <div>
+                <Button
+                  className="bg-white px-6 py-2"
+                  onClick={onOpen}
+                >
+                  Log In
+                </Button>
+              </div>
+            </>
+            )
+          }
         </div>
       </div>
       {children}
