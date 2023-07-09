@@ -61,7 +61,7 @@ const PlayerContent = (props: PlayerContentProps) => {
   });
 
   useEffect(() => {
-    // sound?.play();
+    sound?.play();
     
     return () => sound?.unload()
   }, [sound]);
