@@ -9,6 +9,7 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
 // -> Within codebase
 import Button from "./Button";
+import useAuthModal from "@/hooks/useAuthModal";
 
 type HeaderProps = {
   children: ReactNode;
@@ -19,10 +20,13 @@ const Header = (props: HeaderProps) => {
   const { children, className } = props;
 
   const router = useRouter();
+  const { onOpen } = useAuthModal();
 
   const handleLogout = () => {
 
-  }
+  };
+
+
 
   return (
     <div className={twMerge(`h-fit bg-gradient-to-b from-emerald-800 p-6`, className)}>
@@ -65,7 +69,7 @@ const Header = (props: HeaderProps) => {
             <div>
               <Button
                 className="bg-white px-6 py-2"
-                onClick={() => {}}
+                onClick={onOpen}
               >
                 Log In
               </Button>
