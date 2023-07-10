@@ -11,19 +11,26 @@ export const getURL = () => {
   return url;
 };
 
-export const postData = async ({ url, data }: { url: string, data?: { price: Price }}) => {
-  console.log("POST REQUEST: ", url, data);
+export const postData = async ({
+  url,
+  data
+}: {
+  url: string;
+  data?: { price: Price };
+}) => {
+  console.log('posting,', url, data);
 
   const res: Response = await fetch(url, {
-    method: "POST",
-    headers: new Headers({ "Content-Type": "application/json" }),
-    credentials: "same-origin",
+    method: 'POST',
+    headers: new Headers({ 'Content-Type': 'application/json' }),
+    credentials: 'same-origin',
     body: JSON.stringify(data)
   });
 
   if (!res.ok) {
-    console.error("Error in POST ->", { url, data, res });
-    throw new Error(res.statusText)
+    console.log('Error in postData', { url, data, res });
+
+    throw Error(res.statusText);
   }
 
   return res.json();
