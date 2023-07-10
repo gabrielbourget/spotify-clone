@@ -6,6 +6,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 // -> Within codebase
 import useOnPlay from "@/hooks/useOnPlay";
+import useSubscribeModal from "@/hooks/useSubscribeModal";
 import useUploadModal from "@/hooks/useUploadModal";
 import { useUser } from "@/hooks/useUser";
 import { Song } from "@/types";
@@ -18,12 +19,15 @@ export type LibraryProps = {
 const Library = (props: LibraryProps) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { user } = useUser();
+  const subscribeModal = useSubscribeModal();
+  const { user, subscription } = useUser();
   
   const { songs } = props;
   
   const onClick = () =>{
     if (!user) return authModal.onOpen();
+
+    // if (!subscription) return subscribeModal.onOpen();
 
     return uploadModal.onOpen();
   }

@@ -12,6 +12,7 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
 // -> Within codebase
 import useAuthModal from "@/hooks/useAuthModal";
+import usePlayer from "@/hooks/usePlayer";
 import { useUser } from "@/hooks/useUser";
 import Button from "./Button";
 
@@ -24,12 +25,14 @@ const Header = (props: HeaderProps) => {
   const { children, className } = props;
 
   const router = useRouter();
+  const player = usePlayer();
   const { onOpen } = useAuthModal();
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    player.reset();
     router.refresh();
 
     if (error) toast.error(error.message)
