@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 // -> Within codebase
 import AuthModal from "@/components/AuthModal";
+import SubscribeModal from "@/components/SubscribeModal";
 import UploadModal from "@/components/UploadModal";
 
 const ModalProvider = () => {
@@ -19,6 +20,7 @@ const ModalProvider = () => {
     <>
       <AuthModal />
       <UploadModal />
+      <SubscribeModal />
     </>
   );
 }
