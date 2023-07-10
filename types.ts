@@ -53,6 +53,10 @@ export type Product = {
   metadata?: Stripe.Metadata;
 }
 
+export interface ProductWithPrice extends Product {
+  prices?: Price[];
+}
+
 export type Song = {
   id: string;
   user_id: string;

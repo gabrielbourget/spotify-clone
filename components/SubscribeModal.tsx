@@ -1,8 +1,15 @@
 "use clientl";
 
+import { ProductWithPrice } from "@/types";
 import Modal from "./Modal";
 
-const SubscribeModal = () => {
+type SubscriptModalProps = {
+  products: ProductWithPrice[];
+}
+
+const SubscribeModal = (props: SubscriptModalProps) => {
+  const { products } = props;
+  
   let content = (
     <div className="text-center">
       No products available.
