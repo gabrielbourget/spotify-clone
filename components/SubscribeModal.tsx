@@ -3,6 +3,12 @@
 import Modal from "./Modal";
 
 const SubscribeModal = () => {
+  let content = (
+    <div className="text-center">
+      No products available.
+    </div>
+  )
+
   return (
     <Modal
       title="Only for premium users"
@@ -10,7 +16,7 @@ const SubscribeModal = () => {
       isOpen
       onChange={() => {}}
     >
-      Subscription
+      {content}
     </Modal>
   )
 }
